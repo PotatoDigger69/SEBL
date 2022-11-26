@@ -1,0 +1,33 @@
+diff --git a/uefi/Makefile b/uefi/Makefile
+index 74e7ebb..de6df00 100644
+--- a/uefi/Makefile
++++ b/uefi/Makefile
+@@ -47,7 +47,6 @@ EFIARCH = pei-aarch64-little
+ else
+ EFIARCH = efi-app-$(ARCH)
+ endif
+-AR ?= ar
+ else
+ CFLAGS += --target=$(ARCH)-pc-win32-coff -Wno-builtin-requires-header -Wno-incompatible-library-redeclaration -Wno-long-long
+ LDFLAGS += -subsystem:efi_application -nodefaultlib -dll -entry:uefi_init uefi/*.o
+@@ -57,6 +56,7 @@ LD = lld -flavor link
+ OBJCOPY = true
+ endif
+ 
++AR ?= ar
+ # recipies
+ ifeq ($(wildcard uefi/Makefile),)
+ ALLTARGETS = crt_$(ARCH).o libuefi.a build
+@@ -72,12 +72,8 @@ uefi/libuefi.a:
+ libuefi.lib: $(LIBOBJS)
+ 
+ libuefi.a: $(LIBOBJS)
+-ifneq ($(USE_GCC),)
+ 	@rm $@ 2>/dev/null || true
+ 	$(AR) -frsv $@ $(LIBOBJS) >/dev/null
+-else
+-	@true
+-endif
+ 
+ $(TARGET): $(TARGET).so
+ ifneq ($(USE_GCC),)

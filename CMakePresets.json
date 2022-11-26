@@ -1,0 +1,53 @@
+{
+	"version": 4,
+	"cmakeMinimumRequired": {
+		"major": 3,
+		"minor": 23,
+		"patch": 0
+	},	
+	"configurePresets": [
+		{
+			"name": "x86_64-release",
+			"displayName": "x86_64 Release Build",
+			"description": "Release version of x86_64 Build",
+			"generator": "Unix Makefiles",
+			"binaryDir": "${sourceDir}/build/out/",
+			"cacheVariables": {
+				"CONFIG_ARCH": {
+					"type": "STRING",
+					"value": "x86_64"
+				},
+				"CMAKE_BUILD_TYPE": {
+					"type": "STRING",
+					"value": "x86-64-RELEASE"
+				},
+				"CMAKE_TOOLCHAIN_FILE": {
+					"type": "PATH",
+					"value": "${sourceDir}/build/toolchains/x86_64-toolchain.cmake"
+				},
+				"CMAKE_INSTALL_PREFIX": {
+					"type": "PATH",
+					"value": "${sourceDir}/build/out/install"
+				}
+			}
+		},
+		{
+			"name": "x86_64-debug",
+			"inherits": "x86_64-release",
+			"displayName": "x86_64 Debug Build",
+			"description": "Debug version of x86_64 Build",
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": {
+					"type": "STRING",
+					"value": "x86-64-DEBUG"
+				}
+			}
+		}
+	],
+	"buildPresets": [
+		{
+			"name": "default",
+			"configurePreset": "x86_64-debug"
+		}
+	]
+}
