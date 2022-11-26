@@ -1,5 +1,4 @@
-#SEBL
-
+# SEBL
 ## Installation
 ### CMake
 Include the following CMake code in your file:
