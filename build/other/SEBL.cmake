@@ -31,9 +31,10 @@ function(sebl_target_create _target)
 	COMMAND rm part.img
 	COMMAND mkdir -p ${SEBL_IMAGE_DIR}
 	COMMAND cp ${_target} ${SEBL_IMAGE_DIR}
+	SOURCES "${ARGN}"
 )
 endfunction()
 
 function(sebl_target_sources _target)
-	set_property(TARGET ${_target} APPEND PROPERTY SOURCES ${ARGN})
+	set_property(TARGET ${_target} APPEND PROPERTY SOURCES "${ARGN}")
 endfunction()
