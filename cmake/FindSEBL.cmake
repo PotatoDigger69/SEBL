@@ -37,6 +37,7 @@ function(sebl_target_create _target)
 	COMMAND cp ${_target} ${SEBL_IMAGE_DIR}
 	SOURCES "${ARGN}"
 )
+	add_dependencies(${_target} "$<TARGET_PROPERTY:${_target},SOURCES>")
 endfunction()
 
 function(sebl_target_sources _target)
