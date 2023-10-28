@@ -42,12 +42,48 @@
 					"value": "x86-64-DEBUG"
 				}
 			}
+		},
+		{
+			"name": "aarch64-release",
+			"inherits": "x86_64-release",
+			"displayName": "AArch64 Release Build",
+			"description": "Release version of AArch64 Build",
+			"cacheVariables": {
+				"CONFIG_ARCH": {
+					"type":"STRING",
+					"value":"aarch64"
+				},
+				"CMAKE_BUILD_TYPE": {
+					"type": "STRING",
+					"value": "aarch64-RELEASE"
+				},
+				"CMAKE_TOOLCHAIN_FILE": {
+					"type": "PATH",
+					"value": "${sourceDir}/build/toolchains/aarch64-toolchain.cmake"
+				}
+			}
+		},
+		{
+			"name": "aarch64-debug",
+			"inherits": "aarch64-release",
+			"displayName": "AArch64 Debug Build",
+			"description": "Debug version of AArch64 Build",
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": {
+					"type": "STRING",
+					"value": "aarch64-DEBUG"
+				}
+			}
 		}
 	],
 	"buildPresets": [
 		{
 			"name": "default",
 			"configurePreset": "x86_64-debug"
+		},
+		{
+			"name": "aarch64",
+			"configurePreset": "aarch64-debug"
 		}
 	]
 }
